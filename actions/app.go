@@ -59,6 +59,13 @@ func App() *buffalo.App {
 		app.Use(popmw.Transaction(models.DB))
 
 		app.GET("/", HomeHandler)
+
+		a := app.Group("/api")
+
+		// a.GET("/users", UsersRead)
+		// a.POST("/users", UsersCreate)
+		a.GET("/books", BooksRead)
+		a.Resource("/users", UsersResource{})
 	}
 
 	return app
